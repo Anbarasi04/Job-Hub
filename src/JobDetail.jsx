@@ -4,6 +4,7 @@ import api from './Api';
 import { useAuth } from './context/AuthContext';
 import { MapPin, Briefcase, Clock, DollarSign, Users, Calendar, ArrowLeft, CheckCircle, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
+import AIJobPanel from './candidate/AIJobPanel';
 
 const JobDetail = () => {
   const { id } = useParams();
@@ -169,6 +170,11 @@ const JobDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* ── AI Panel (only for logged-in candidates) ── */}
+            {user?.role === 'candidate' && (
+              <AIJobPanel job={job} />
+      )}
 
       {/* Apply Modal */}
       {showApplyModal && (
